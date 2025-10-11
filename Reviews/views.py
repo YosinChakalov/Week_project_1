@@ -10,3 +10,6 @@ class ReviewViewset(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = ReviewPagination
+
+    def perform_create(self, serializer):
+        serializer.save(user_id=self.request.user.id)
